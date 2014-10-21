@@ -31,6 +31,7 @@ searchField.addEventListener( 'keydown', function(e) {
       currentlyActive.classList.remove("active");
       next.classList.add("active");
       searchField.value = next.innerHTML;
+      inject( "Search <strong>"+ searchField.value +"</strong> on:", searchHeadline );
       after( 5, function() {
         searchField.setSelectionRange( searchField.value.length, searchField.value.length );
       });
