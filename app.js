@@ -15,17 +15,7 @@ varify();
 searchField.addEventListener( 'keyup', function(e) {
   popup.style.display = "block";
   if ( !contains( ["Up", "Down", "Left", "Right"], e.key ) ) {
-    // typing
-    var activeSuggestions = suggestions.filter( function( item ) {
-      return item.title.toLowerCase().startsWith( searchField.value.toLowerCase() );
-    });
-    var newHTML = "";
-    activeSuggestions.forEach( function( item, index ) {
-      newHTML += "<li" + maybe(index===0, " class='active'", "") + ">" + item.title + "</li>";
-    });
-    inject( newHTML, suggestionContainer );
-
-    inject( "Search <strong>"+ searchField.value +"</strong> on:", searchHeadline );
+    updateSuggestions();
   }
 });
 
@@ -52,12 +42,29 @@ searchField.addEventListener( 'keydown', function(e) {
 searchField.addEventListener( 'focus', function() {
   if ( searchField.value !== '' ) {
     popup.style.display = "block";
+    updateSuggestions();
   }
 });
 
 searchField.addEventListener( 'blur', function() {
   popup.style.display = "none";
 });
+
+function updateSuggestions() {
+  // typing
+  var activeSuggestions = suggestions.filter( function( item ) {
+    return item.title.toLowerCase().startsWith( searchField.value.toLowerCase() );
+  });
+  var newHTML = "";
+  activeSuggestions.forEach( function( item, index ) {
+    newHTML += "<li" + maybe(index===0, " class='active'", "") + ">" + item.title + "</li>";
+  });
+  inject( newHTML, suggestionContainer );
+
+  inject( "Search <strong>"+ searchField.value +"</strong> on:", searchHeadline );
+}
+
+
 
 
 function collect(selector) {
