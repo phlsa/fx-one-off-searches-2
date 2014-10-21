@@ -12,8 +12,10 @@ body {
 
 #popup {
   width: 215px;
-  border: 1px solid #000;
+  border: 1px solid #ccc;
   font-size: 12px;
+  border-radius: 3px;
+  box-shadow: 0 4px 20px rgba(0,0,0,.2);
 }
 
 #popup ul {
@@ -80,7 +82,7 @@ li.active {
 #amazon:after { background-image:url(img/amazon.png) }
 
 #yahoo-headline {
-  border-top: none;
+  border-top: none !important;
   border-bottom: 1px solid #ccc;
 }
 
