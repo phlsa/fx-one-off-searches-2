@@ -25,7 +25,7 @@ li.active {
 
 #one-offs {
   border-top: 1px solid #ccc;
-  background-color: #eee;
+  background-color: rgb(245, 245, 245);
 }
 
 #one-offs li {
@@ -54,10 +54,10 @@ li.active {
   background-position: center;
 }
 
-#search-headline {
+#popup h2 {
   font-size: 10px;
   font-weight: normal;
-  background-color: #eee;
+  background-color: rgb(245, 245, 245);
   border-top: 1px solid #ccc;
   margin: 0;
   padding: 3px 6px;
@@ -67,3 +67,20 @@ li.active {
 #twitter:after { background-image:url(img/twitter.png) }
 #ebay:after { background-image:url(img/ebay.png) }
 #amazon:after { background-image:url(img/amazon.png) }
+
+#yahoo-headline {
+  border-top: none;
+  border-bottom: 1px solid #ccc;
+}
+
+#yahoo-headline > img {
+  width: 16px;
+  height: 16px;
+  margin-right: 3px;
+}
+
+#yahoo-headline > span {
+  position: relative;
+  display: inline-block;
+  top: -3px;
+}
