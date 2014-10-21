@@ -54,7 +54,7 @@ li.active {
   background-position: center;
 }
 
-h2 {
+#search-headline {
   font-size: 10px;
   font-weight: normal;
   background-color: #eee;
