@@ -1,11 +1,11 @@
 var suggestions = [
-  {title: "Mozilla Firefox", active: false},
-  {title: "Mozilla Foundation", active: false},
-  {title: "Mongolia", active: false},
-  {title: "Mozillians", active: false},
-  {title: "Morbid Humor", active: false},
-  {title: "Mozart", active: false},
-  {title: "Mozfest", active: false}
+  {title: "Mozilla Firefox"},
+  {title: "Mozilla Foundation"},
+  {title: "Mongolia"},
+  {title: "Mozillians"},
+  {title: "Morbid Humor"},
+  {title: "Mozart"},
+  {title: "Mozfest"}
 ];
 
 // Turn all IDs into selectable vars
