@@ -7,6 +7,7 @@ var suggestions = [
   {title: "Mozart"},
   {title: "Mozfest"}
 ];
+var originalQuery = "";
 
 // Turn all IDs into selectable vars
 varify();
@@ -15,6 +16,7 @@ varify();
 searchField.addEventListener( 'keyup', function(e) {
   popup.style.display = "block";
   if ( !contains( ["Up", "Down", "Left", "Right"], e.key ) ) {
+    originalQuery = searchField.value;
     updateSuggestions();
   }
 });
@@ -23,7 +25,7 @@ searchField.addEventListener( 'keyup', function(e) {
 searchField.addEventListener( 'keydown', function(e) {
   if ( contains( ["Up", "Down", "Left", "Right"], e.key ) ) {
     // navigating
-    var currentlyActive = select("#suggestion-container>li.active");
+    var currentlyActive = select("li.active");
     var next = maybe(e.key==="Down" || e.key==="Right", 
                      currentlyActive.nextElementSibling, 
                      currentlyActive.previousElementSibling);
@@ -31,10 +33,30 @@ searchField.addEventListener( 'keydown', function(e) {
       currentlyActive.classList.remove("active");
       next.classList.add("active");
       searchField.value = next.innerHTML;
-      inject( "Search <strong>"+ searchField.value +"</strong> on:", searchHeadline );
+      if (currentlyActive.parentElement.id==="suggestion-container") {
+        inject( "Search <strong>"+ searchField.value +"</strong> on:", searchHeadline );
+      }
       after( 5, function() {
         searchField.setSelectionRange( searchField.value.length, searchField.value.length );
       });
+    } else {
+      // jumping in and out of the tray
+      currentlyActive.classList.remove("active");
+      var nextSection;
+
+      if ( currentlyActive.parentElement.id === "suggestion-container" ) {
+        nextSection = oneOffs;
+        searchField.value = originalQuery;
+        inject( "Search <strong>"+ searchField.value +"</strong> on:", searchHeadline );
+      } else {
+        nextSection = suggestionContainer;
+      }
+
+      if ( e.key==="Down" || e.key==="Right" ) {
+        nextSection.children[0].classList.add("active");
+      } else {
+        nextSection.children[nextSection.children.length-1].classList.add("active");
+      }
     }
   }
 });
