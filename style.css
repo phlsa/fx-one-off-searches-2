@@ -47,7 +47,7 @@ li.active {
   border-right: 1px solid #ccc;
 }
 
-#one-offs li:hover, #one-offs li.active {
+#one-offs li:hover:after, #one-offs li.active:after {
   background-color: #3e8bd0;
 }
 
@@ -56,10 +56,12 @@ li.active {
 }*/
 
 #one-offs li:after {
+  position: absolute;
   display: inline-block;
-  width: 20px;
-  height: 16px;
-  margin-top: -4px;
+  width: 40px;
+  height: 33px;
+  margin-top: -10px;
+  margin-left: -10px;
   content: "";
   background-repeat: no-repeat;
   background-size: 16px;

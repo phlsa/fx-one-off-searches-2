@@ -70,7 +70,7 @@ searchField.addEventListener( 'focus', function() {
 });
 
 searchField.addEventListener( 'blur', function() {
-  popup.style.display = "none";
+  //popup.style.display = "none";
 });
 
 function updateSuggestions() {
