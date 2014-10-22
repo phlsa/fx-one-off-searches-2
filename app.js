@@ -32,8 +32,8 @@ searchField.addEventListener( 'keydown', function(e) {
     if ( next ) {
       currentlyActive.classList.remove("active");
       next.classList.add("active");
-      searchField.value = next.innerHTML;
-      if (currentlyActive.parentElement.id==="suggestion-container") {
+      if (next.parentElement.id==="suggestion-container") {
+        searchField.value = next.innerHTML;
         inject( "Search <strong>"+ searchField.value +"</strong> on:", searchHeadline );
       }
       after( 5, function() {

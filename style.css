@@ -90,6 +90,7 @@ li.active {
   width: 16px;
   height: 16px;
   margin-right: 3px;
+  transform: translate(0, 1px);
 }
 
 #yahoo-headline > span {
