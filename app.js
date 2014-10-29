@@ -1,4 +1,5 @@
 var suggestions = [
+  {title: ""},
   {title: "Mozilla Firefox"},
   {title: "Mozilla Foundation"},
   {title: "Mongolia"},
@@ -20,6 +21,8 @@ searchField.addEventListener( 'keyup', function(e) {
     updateSuggestions();
   }
 });
+
+
 
 // Navigating
 searchField.addEventListener( 'keydown', function(e) {
@@ -66,19 +69,18 @@ searchField.addEventListener( 'keydown', function(e) {
 
     if ( currentlyActive.parentElement.id === "suggestion-container" ) {
       nextSection = oneOffs;
-      if ( e.key!=="Tab" ) {
-        searchField.value = originalQuery;
-        inject( "Search <strong>"+ searchField.value +"</strong> on:", searchHeadline );
-      }
     } else {
       nextSection = suggestionContainer;
     }
 
+    if ( e.key!=="Tab" ) {
+      searchField.value = originalQuery;
+      inject( "Search <strong>"+ searchField.value +"</strong> on:", searchHeadline );
+    }
+
     if ( e.key==="Down" || e.key==="Right" || e.key==="Tab" ) {
-      //nextSection.children[0].classList.add("active");
       next = nextSection.children[0];
     } else {
-      //nextSection.children[nextSection.children.length-1].classList.add("active");
       next = nextSection.children[nextSection.children.length-1];
     }
   }
@@ -86,11 +88,13 @@ searchField.addEventListener( 'keydown', function(e) {
   // Update the highlight
   currentlyActive.classList.remove("active");
   next.classList.add("active");
-  if ( next.parentElement.id==="suggestion-container" ) {
+  if ( next.parentElement.id==="suggestion-container" && currentlyActive.parentElement.id!=="one-offs" ) {
     searchField.value = next.innerHTML;
     inject( "Search <strong>"+ searchField.value +"</strong> on:", searchHeadline );
   }
 });
+
+
 
 // Focusing
 searchField.addEventListener( 'focus', function() {
@@ -105,6 +109,8 @@ searchField.addEventListener( 'blur', function() {
 });
 
 function updateSuggestions() {
+  // update the dummy entry
+  suggestions[0].title = searchField.value;
   // typing
   var activeSuggestions = suggestions.filter( function( item ) {
     return item.title.toLowerCase().startsWith( searchField.value.toLowerCase() );

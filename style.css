@@ -28,6 +28,10 @@ body {
   padding: 5px 7px;
 }
 
+#suggestion-container li:first-child {
+  display: none;
+}
+
 li.active {
   color: #fff;
   background-color: #3e8bd0;
