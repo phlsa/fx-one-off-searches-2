@@ -88,7 +88,7 @@ searchField.addEventListener( 'keydown', function(e) {
   // Update the highlight
   currentlyActive.classList.remove("active");
   next.classList.add("active");
-  if ( next.parentElement.id==="suggestion-container" && currentlyActive.parentElement.id!=="one-offs" ) {
+  if ( next.parentElement.id==="suggestion-container" ) {
     searchField.value = next.innerHTML;
     inject( "Search <strong>"+ searchField.value +"</strong> on:", searchHeadline );
   }
