@@ -15,7 +15,11 @@ varify();
 
 // Typing
 searchField.addEventListener( 'keyup', function(e) {
-  popup.style.display = "block";
+  if ( searchField.value !== '' ) {
+    popup.style.display = "block";
+  } else {
+    popup.style.display = "none";
+  }
   if ( !contains( ["Up", "Down", "Left", "Right", "Tab"], e.key ) ) {
     originalQuery = searchField.value;
     updateSuggestions();
@@ -105,16 +109,20 @@ searchField.addEventListener( 'focus', function() {
 });
 
 searchField.addEventListener( 'blur', function() {
-  //popup.style.display = "none";
+  popup.style.display = "none";
 });
 
 function updateSuggestions() {
   // update the dummy entry
   suggestions[0].title = searchField.value;
   // typing
-  var activeSuggestions = suggestions.filter( function( item ) {
-    return item.title.toLowerCase().startsWith( searchField.value.toLowerCase() );
-  });
+  var activeSuggestions = maybe( searchField.value==='', [suggestions[0]], 
+                                                         suggestions.filter( function( item ) {
+                                                           return item.title.toLowerCase().startsWith( searchField.value.toLowerCase() );
+                                                        }));
+  if ( activeSuggestions.length < 2 ) {
+    activeSuggestions = [{title:''}, {title:searchField.value}];
+  }
   var newHTML = "";
   activeSuggestions.forEach( function( item, index ) {
     newHTML += "<li" + maybe(index===0, " class='active'", "") + ">" + item.title + "</li>";
