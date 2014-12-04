@@ -132,6 +132,11 @@ function bindHoverHandlers() {
 }
 
 
+popup.addEventListener("mouseout", function(e) {
+  all(collect("li"), function(item) {item.classList.remove("active")});
+});
+
+
 
 // Focusing
 searchField.addEventListener( 'focus', function() {
