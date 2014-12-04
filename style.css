@@ -1,5 +1,5 @@
 body {
-  font-family: "Lucida Grande", sans-serif;
+  font-family: "Helvetica", sans-serif;
 }
 
 #search-field {
@@ -8,6 +8,26 @@ body {
   -webkit-appearance: searchfield;
   appearance: searchfield;
   padding-left: 5px;
+}
+
+#search-field-container {
+  position: relative;
+}
+
+#search-field-extension {
+  font-size: 12px;
+  position: absolute;
+  top: 6.5px;
+  left: 25px;
+  pointer-events: none;
+}
+
+#pre {
+  opacity: 0;
+}
+
+#post {
+  color: #ccc;
 }
 
 #popup {

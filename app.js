@@ -39,6 +39,8 @@ searchField.addEventListener( 'keydown', function(e) {
   var currentlyActive = select("li.active");
   var next = null;
 
+  pre.innerHTML = post.innerHTML = "";
+
   // Navigating
   if ( contains( ["Up", "Down", "Left", "Right"], e.key ) ) {
     next = maybe(e.key==="Down" || e.key==="Right", 
@@ -111,7 +113,20 @@ function bindHoverHandlers() {
       all(items, function(otherItem) {
         otherItem.classList.remove("active", "half-active");
       });
+
       item.classList.add("active");
+      if ( item.parentElement.id==="suggestion-container" ) {
+        var typedValue = searchField.value;
+        var fullValue = item.innerHTML;
+        var completedValue = fullValue.toLowerCase().split(typedValue.toLowerCase())[1];
+        if (completedValue) {
+          pre.innerHTML = typedValue;
+          post.innerHTML = completedValue;
+          //inject( "Search <strong>"+ searchField.value +"</strong> on:", searchHeadline );
+        }
+      } else {
+        pre.innerHTML = post.innerHTML = "";
+      }
     });
   });
 }
