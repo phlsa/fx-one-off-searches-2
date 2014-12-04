@@ -93,10 +93,28 @@ searchField.addEventListener( 'keydown', function(e) {
   currentlyActive.classList.remove("active");
   next.classList.add("active");
   if ( next.parentElement.id==="suggestion-container" ) {
+    all(collect("li"), function(item) {item.classList.remove("half-active")});
     searchField.value = next.innerHTML;
     inject( "Search <strong>"+ searchField.value +"</strong> on:", searchHeadline );
+  } else {
+    if (currentlyActive.parentElement.id==="suggestion-container") {
+      currentlyActive.classList.add("half-active");
+    }
   }
 });
+
+
+function bindHoverHandlers() {
+  var items = collect("li");
+  all(items, function(item) {
+    item.addEventListener("mouseover", function(e) {
+      all(items, function(otherItem) {
+        otherItem.classList.remove("active", "half-active");
+      });
+      item.classList.add("active");
+    });
+  });
+}
 
 
 
@@ -109,7 +127,7 @@ searchField.addEventListener( 'focus', function() {
 });
 
 searchField.addEventListener( 'blur', function() {
-  popup.style.display = "none";
+  //popup.style.display = "none";
 });
 
 function updateSuggestions() {
@@ -130,6 +148,8 @@ function updateSuggestions() {
   inject( newHTML, suggestionContainer );
 
   inject( "Search <strong>"+ searchField.value +"</strong> on:", searchHeadline );
+
+  bindHoverHandlers();
 }
 
 
@@ -141,6 +161,18 @@ function collect(selector) {
 
 function select(selector)  {
   return document.querySelectorAll( selector )[0];
+}
+
+function all(collection, fn) {
+  if (collection.forEach) {
+    collection.forEach(fn);
+  } else {
+    for (var i=0; i<collection.length; i++) {
+      fn(collection[i]);
+    }
+  }
+
+  return collection;
 }
 
 function inject(content, element) {
