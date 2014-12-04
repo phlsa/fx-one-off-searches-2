@@ -30,6 +30,8 @@ searchField.addEventListener( 'keyup', function(e) {
 
 // Navigating
 searchField.addEventListener( 'keydown', function(e) {
+  pre.innerHTML = post.innerHTML = "";
+  
   // Abort if the pressed key is not a navigation key
   if ( !contains(["Up", "Down", "Left", "Right", "Tab"], e.key) ) {
     return;
@@ -38,8 +40,6 @@ searchField.addEventListener( 'keydown', function(e) {
   var leavingCurrentRange = false;
   var currentlyActive = select("li.active");
   var next = null;
-
-  pre.innerHTML = post.innerHTML = "";
 
   // Navigating
   if ( contains( ["Up", "Down", "Left", "Right"], e.key ) ) {
