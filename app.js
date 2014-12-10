@@ -17,6 +17,7 @@ varify();
 searchField.addEventListener( 'keyup', function(e) {
   if ( searchField.value !== '' ) {
     popup.style.display = "block";
+    popup.classList.remove('advanced-mode');
   } else {
     popup.style.display = "none";
   }
@@ -138,11 +139,11 @@ popup.addEventListener("mouseout", function(e) {
 });
 
 
-
 // Focusing
 searchField.addEventListener( 'focus', function() {
   if ( searchField.value !== '' ) {
     popup.style.display = "block";
+    popup.classList.remove('advanced-mode');
     updateSuggestions();
   }
 });
@@ -150,6 +151,41 @@ searchField.addEventListener( 'focus', function() {
 searchField.addEventListener( 'blur', function() {
   //popup.style.display = "none";
 });
+
+
+// Search Icon
+searchIcon.addEventListener( 'click', function() {
+  if (searchField.value === '') {
+    popup.style.display = "block";
+    popup.classList.add('advanced-mode');
+  } 
+});
+
+// Hovering one-off icons in advanced mode
+var oneOffItems = collect('#one-offs li');
+all( oneOffItems, function(item) {
+  item.addEventListener('mouseover', function() {
+    if (popup.classList.contains('advanced-mode')) {
+      searchField.placeholder = item.title;
+    }
+  });
+  item.addEventListener('mouseout', function() {
+    var str = "Search";
+    if ( select('.preselected') ) {
+      str = select('.preselected').title;
+    }
+    searchField.placeholder = str;
+  });
+  item.addEventListener('click', function() {
+    all(oneOffItems, function(item) {
+      item.classList.remove('preselected');
+    });
+    item.classList.add('preselected');
+    searchField.focus();
+  });
+});
+
+
 
 function updateSuggestions() {
   // update the dummy entry

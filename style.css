@@ -14,6 +14,15 @@ body {
   position: relative;
 }
 
+#search-icon {
+  position: absolute;
+  left: 3px;
+  top: 3px;
+  width: 16px;
+  height: 16px;
+  /*background-color: #fff;*/
+}
+
 #search-field-extension {
   font-size: 12px;
   position: absolute;
@@ -58,9 +67,20 @@ body {
   display: none;
 }
 
-li.active, #one-offs li.active:after {
+#suggestion-container li.active, #one-offs li.active:after, #popup:not(.advanced-mode) #one-offs li.preselected:hover:after {
   color: #fff;
-  background-color: #3e8bd0 !important;
+  background-color: #3e8bd0;
+}
+
+.advanced-mode #yahoo-headline, .advanced-mode #suggestion-container {
+  display: none;
+}
+
+.advanced-mode #one-offs li:hover:after, #one-offs li.preselected:after {
+  width: 38px;
+  height: 31px;
+  border: 1px solid #3e8bd0;
+  background-color: transparent;
 }
 
 li.half-active {
@@ -108,10 +128,11 @@ li.half-active {
   color: #666;
 }
 
-#wikipedia:after { background-image:url(img/wikipedia.png) }
-#twitter:after { background-image:url(img/twitter.png) }
-#ebay:after { background-image:url(img/ebay.png) }
-#amazon:after { background-image:url(img/amazon.png) }
+.yahoo:after { background-image:url(img/yahoo.png) }
+.wikipedia:after { background-image:url(img/wikipedia.png) }
+.twitter:after { background-image:url(img/twitter.png) }
+.ebay:after { background-image:url(img/ebay.png) }
+.amazon:after { background-image:url(img/amazon.png) }
 
 #yahoo-headline {
   border-top: none !important;
