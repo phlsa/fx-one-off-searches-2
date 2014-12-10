@@ -168,9 +168,7 @@ searchField.addEventListener( 'blur', function() {
 // Search Icon
 searchIcon.addEventListener( 'click', function() {
   popup.style.display = "block";
-  if (searchField.value === '') {
-    popup.classList.add('advanced-mode');
-  } 
+  popup.classList.add('advanced-mode'); 
 });
 
 // One-off icons in advanced mode
