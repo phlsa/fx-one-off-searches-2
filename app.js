@@ -161,12 +161,13 @@ searchIcon.addEventListener( 'click', function() {
   } 
 });
 
-// Hovering one-off icons in advanced mode
+// One-off icons in advanced mode
 var oneOffItems = collect('#one-offs li');
 all( oneOffItems, function(item) {
   item.addEventListener('mouseover', function() {
     if (popup.classList.contains('advanced-mode')) {
       searchField.placeholder = item.title;
+      searchTitle.innerHTML =  item.title + " Search";
     }
   });
   item.addEventListener('mouseout', function() {
@@ -175,12 +176,15 @@ all( oneOffItems, function(item) {
       str = select('.preselected').title;
     }
     searchField.placeholder = str;
+    searchTitle.innerHTML =  str + " Search";
   });
   item.addEventListener('click', function() {
-    all(oneOffItems, function(item) {
-      item.classList.remove('preselected');
+    all(oneOffItems, function(itm) {
+      itm.classList.remove('preselected');
     });
     item.classList.add('preselected');
+    searchIcon.classList.remove('yahoo', 'wikipedia', 'twitter', 'ebay', 'amazon');
+    searchIcon.classList.add(item.getAttribute('data-engine'));
     searchField.focus();
   });
 });

@@ -20,18 +20,18 @@
 </ul-->
 
 <div id="search-field-container">
-<div id="search-icon" class="wikipedia"></div>
+<div id="search-icon"></div>
 <input id="search-field" name="searchfield" placeholder="Search">
 <div id="search-field-extension"><span id="pre"></span><span id="post"></span></div>
 </div>
 <div id="popup" style="display:none" class="advanced-mode">
-  <h2 id="yahoo-headline"><img src="img/yahoo.png"> <span>Yahoo! Search</span></h2>
+  <h2 id="yahoo-headline"><img src="img/yahoo.png"> <span id="search-title">Yahoo! Search</span></h2>
   <ul id="suggestion-container">
   </ul>
 
   <h2 id="search-headline">Search on:</h2>
   <ul id="one-offs">
-    <li class="yahoo" title="Yahoo!"></li><li class="wikipedia" title="Wikipedia (en)"></li><li class="twitter" title="Twitter"></li><li class="ebay" title="eBay"></li><li class="amazon" title="Amazon.com"></li>
+    <li class="yahoo" title="Yahoo!" data-engine="yahoo"></li><li class="wikipedia" title="Wikipedia (en)" data-engine="wikipedia"></li><li class="twitter" title="Twitter" data-engine="twitter"></li><li class="ebay" title="eBay" data-engine="ebay"></li><li class="amazon" title="Amazon.com" data-engine="amazon"></li>
   </ul>
 </div>
 
