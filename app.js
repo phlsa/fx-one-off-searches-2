@@ -191,14 +191,24 @@ all( oneOffItems, function(item) {
     searchTitle.innerHTML =  str + " Search";
   });
   item.addEventListener('click', function() {
-    all(oneOffItems, function(itm) {
-      itm.classList.remove('preselected');
-    });
-    item.classList.add('preselected');
-    searchIcon.classList.remove('yahoo', 'wikipedia', 'twitter', 'ebay', 'amazon');
-    searchIcon.classList.add(item.getAttribute('data-engine'));
-    searchIcon.style.opacity = 1;
-    searchField.focus();
+    if (popup.classList.contains('advanced-mode')) {
+      all(oneOffItems, function(itm) {
+        itm.classList.remove('preselected');
+      });
+      item.classList.add('preselected');
+      searchIcon.classList.remove('yahoo', 'wikipedia', 'twitter', 'ebay', 'amazon');
+      searchIcon.classList.add(item.getAttribute('data-engine'));
+      searchIcon.style.opacity = 1;
+      searchField.focus();
+    } else {
+      popup.style.display = 'none';
+      popup.classList.remove('advanced-mode');
+      searchIcon.style.opacity = 0;
+      all(oneOffItems, function(item) {
+        item.classList.remove('preselected');
+      });
+      searchField.blur();
+    }
   });
 });
 
