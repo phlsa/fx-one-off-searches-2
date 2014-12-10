@@ -34,13 +34,21 @@ searchField.addEventListener( 'keydown', function(e) {
   pre.innerHTML = post.innerHTML = "";
   
   // Abort if the pressed key is not a navigation key
-  if ( !contains(["Up", "Down", "Left", "Right", "Tab"], e.key) ) {
+  if ( !contains(["Up", "Down", "Left", "Right", "Tab", "Enter"], e.key) ) {
     return;
   }
 
   var leavingCurrentRange = false;
   var currentlyActive = select("li.active");
   var next = null;
+
+  // Pressing enter
+  if ( e.key === "Enter" ) {
+    popup.style.display = 'none';
+    popup.classList.remove('advanced-mode');
+    searchField.blur();
+    return;
+  }
 
   // Navigating
   if ( contains( ["Up", "Down", "Left", "Right"], e.key ) ) {
@@ -158,6 +166,7 @@ searchIcon.addEventListener( 'click', function() {
   if (searchField.value === '') {
     popup.style.display = "block";
     popup.classList.add('advanced-mode');
+    searchIcon.style.opacity = 1;
   } 
 });
 
