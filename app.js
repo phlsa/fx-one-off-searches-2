@@ -46,6 +46,10 @@ searchField.addEventListener( 'keydown', function(e) {
   if ( e.key === "Enter" ) {
     popup.style.display = 'none';
     popup.classList.remove('advanced-mode');
+    searchIcon.style.opacity = 0;
+    all(oneOffItems, function(item) {
+      item.classList.remove('preselected');
+    });
     searchField.blur();
     return;
   }
@@ -163,10 +167,9 @@ searchField.addEventListener( 'blur', function() {
 
 // Search Icon
 searchIcon.addEventListener( 'click', function() {
+  popup.style.display = "block";
   if (searchField.value === '') {
-    popup.style.display = "block";
     popup.classList.add('advanced-mode');
-    searchIcon.style.opacity = 1;
   } 
 });
 
@@ -194,6 +197,7 @@ all( oneOffItems, function(item) {
     item.classList.add('preselected');
     searchIcon.classList.remove('yahoo', 'wikipedia', 'twitter', 'ebay', 'amazon');
     searchIcon.classList.add(item.getAttribute('data-engine'));
+    searchIcon.style.opacity = 1;
     searchField.focus();
   });
 });
